@@ -6,9 +6,12 @@ class StorePicker extends React.Component {
     event.preventDefault();
     console.log('You changed the URL');
     // first grab the text from the box
+    // In react, we want to stay away from touching the dom
+    // so, we'll use a function ref which we can see on line 21
     const storeId = this.storeInput.value;
     console.log(`Going to ${storeId}`);
     // second we're going to transition from / to /store/:storeId
+    // this is dependant on the context types
     this.context.router.transitionTo(`/store/${storeId}`);
   }
 
@@ -22,6 +25,7 @@ class StorePicker extends React.Component {
     )
   }
 }
+// using contextTypes to make our router available
 StorePicker.contextTypes = {
   router: React.PropTypes.object
 }
